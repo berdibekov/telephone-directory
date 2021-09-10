@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.berdibekov.domain</OriginalElement>
+  <nodes>
+    <node x="145.0" y="0.0">com.berdibekov.domain.Email</node>
+    <node x="278.0" y="0.0">com.berdibekov.domain.PhoneNumber</node>
+    <node x="0.0" y="0.0">com.berdibekov.domain.Address</node>
+    <node x="77.5" y="168.0">com.berdibekov.domain.Contact</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.berdibekov.domain.Contact" target="com.berdibekov.domain.Address">
+      <point x="-82.66666666666669" y="-125.0" />
+      <point x="118.83333333333331" y="143.0" />
+      <point x="62.5" y="143.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.berdibekov.domain.Contact" target="com.berdibekov.domain.PhoneNumber">
+      <point x="82.66666666666669" y="-125.0" />
+      <point x="284.1666666666667" y="143.0" />
+      <point x="359.5" y="143.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.berdibekov.domain.Contact" target="com.berdibekov.domain.Email">
+      <point x="0.0" y="-125.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="126.5" y="162.5" />
+  <SelectedNodes>
+    <node>com.berdibekov.domain.Email</node>
+    <node>com.berdibekov.domain.PhoneNumber</node>
+    <node>com.berdibekov.domain.Address</node>
+    <node>com.berdibekov.domain.Contact</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

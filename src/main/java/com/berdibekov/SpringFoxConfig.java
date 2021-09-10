@@ -36,24 +36,4 @@ public class SpringFoxConfig {
                 new Contact("Ilyas Berdibekov", "www.ilyas.com", "mr.berdibekov@bk.ru"),
                 "License of API", "API license URL", Collections.emptyList());
     }
-
-//    @Bean
-//    public Docket guestApi() {
-//        return new Docket(DocumentationType.SWAGGER_2).groupName("guest")
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.berdibekov.api.controller.guest"))
-//                .paths(PathSelectors.any())
-//                .build()
-//                .apiInfo(guestApiInfo());
-//    }
-//
-//    private ApiInfo guestApiInfo() {
-//        return new ApiInfo(
-//                "Ilyas Berdibekov Poll API for guests",
-//                "This is test task for Fabrique.studio",
-//                "V1",
-//                "Terms of service",
-//                new Contact("Ilyas Berdibekov", "www.ilyas.com", "mr.berdibekov@bk.ru"),
-//                "License of API", "API license URL", Collections.emptyList());
-//    }
 }

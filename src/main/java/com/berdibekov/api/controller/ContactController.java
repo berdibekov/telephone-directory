@@ -1,64 +1,69 @@
 package com.berdibekov.api.controller;
 
-import com.berdibekov.dto.ContactFilterDto;
-import com.berdibekov.dto.error.ErrorDetail;
 import com.berdibekov.domain.Contact;
 import com.berdibekov.dto.ContactDto;
-import com.berdibekov.service.PhoneDictService;
+import com.berdibekov.dto.ContactFilterDto;
+import com.berdibekov.service.PhoneDirectoryServiceImpl;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @Controller
 @RequestMapping("/api/")
 public class ContactController {
 
-    private final PhoneDictService phoneDictService;
+    private final PhoneDirectoryServiceImpl phoneDirectoryServiceImpl;
 
-    public ContactController(PhoneDictService phoneDictService) {
-        this.phoneDictService = phoneDictService;
+    public ContactController(PhoneDirectoryServiceImpl phoneDirectoryServiceImpl) {
+        this.phoneDirectoryServiceImpl = phoneDirectoryServiceImpl;
     }
 
     @RequestMapping(value = "/contacts", method = RequestMethod.POST)
     @ApiOperation(value = "Creates a new contact")
-    @ApiResponses(value = {@ApiResponse(code = 201, message = "Passenger Created Successfully"),
-            @ApiResponse(code = 500, message = "Error creating Poll", response = ErrorDetail.class)})
 
     public ResponseEntity<Void> createContact(@Valid @RequestBody ContactDto contactDto) {
-        Contact contact = phoneDictService.createContact(contactDto);
+        Contact contact = phoneDirectoryServiceImpl.createContact(contactDto);
         HttpHeaders responseHeaders = getHttpHeadersForNewResource(contact.getId());
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/contacts/{contactId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/contacts/{contactId}", method = RequestMethod.PUT)
     @ApiOperation(value = "Update contact")
-    @ApiResponses(value = {@ApiResponse(code = 201, message = "Passenger Created Successfully"),
-            @ApiResponse(code = 500, message = "Error creating Poll", response = ErrorDetail.class)})
 
     public ResponseEntity<Void> updateContact(@PathVariable Long contactId, @Valid @RequestBody ContactDto contactDto) {
-        phoneDictService.updateContact(contactId, contactDto);
-        Contact contact = phoneDictService.createContact(contactDto);
+        phoneDirectoryServiceImpl.updateContact(contactId, contactDto);
+        Contact contact = phoneDirectoryServiceImpl.createContact(contactDto);
         HttpHeaders responseHeaders = getHttpHeadersForNewResource(contact.getId());
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/contacts/{contactId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get contact with specified id")
+
+    public ResponseEntity<Contact> getContact(@PathVariable Long contactId) {
+        Contact contact = phoneDirectoryServiceImpl.getContactById(contactId);
+        HttpHeaders responseHeaders = getHttpHeadersForNewResource(contact.getId());
+        return new ResponseEntity<>(contact, responseHeaders, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/contacts/searches", method = RequestMethod.POST)
     @ApiOperation(value = "Get filtered contacts")
-    @ApiResponses(value = {@ApiResponse(code = 201, message = "Passenger Created Successfully"),
-            @ApiResponse(code = 500, message = "Error creating Poll", response = ErrorDetail.class)})
 
-    public ResponseEntity<?> getContacts(@RequestBody ContactFilterDto contactFilterDto) {
-        List<Contact> contacts = phoneDictService.getContacts(contactFilterDto);
+    public ResponseEntity<Page<Contact>> getFilteredContacts(@RequestBody(required = false) ContactFilterDto contactFilterDto,
+                                                             Pageable pageable) {
+        Page<Contact> contacts = phoneDirectoryServiceImpl.getFilteredContacts(contactFilterDto, pageable);
         return new ResponseEntity<>(contacts, HttpStatus.OK);
     }
 

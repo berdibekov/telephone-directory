@@ -1,6 +1,6 @@
 package com.berdibekov.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class PhoneNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    Long id;
+    @JsonIgnore
+    private Long id;
 
     @Column(name = "phone_number")
     private String phoneNumber;

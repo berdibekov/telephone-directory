@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+/**
+ * This class maps Contact and its DTO ContactDto.
+ */
 @Component
 public class ContactMapper {
 
@@ -19,7 +22,7 @@ public class ContactMapper {
     }
 
     public Contact toEntity(ContactDto contactDto) {
-    return modelMapper.map(contactDto, Contact.class);
+        return modelMapper.map(contactDto, Contact.class);
     }
 
     public ContactDto toDto(Contact entity) {

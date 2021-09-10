@@ -5,7 +5,7 @@ import com.berdibekov.domain.Email;
 import com.berdibekov.domain.PhoneNumber;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -17,5 +17,5 @@ public class ContactDto {
     private List<Address> addresses;
     private List<PhoneNumber> phoneNumbers;
     private List<Email> emails;
-    private Date birthDate;
+    private LocalDate birthDate;
 }
