@@ -15,9 +15,9 @@
 UML DIAGRAM
 -
 - Domain    
-![](docs\domain.png)
+![](docs/domain.png)
 - Apllication UML
-    ![](docs\PhoneDirectoryService.png)
+    ![](docs/PhoneDirectoryService.png)
 API documentation by Swagger 
 -
 
@@ -41,7 +41,7 @@ Compile and run instruction
  Use instructions
  -
  Retrieve sorted page of contacts
- ![](docs\paginationAndSorting.png)
+ ![](docs/paginationAndSorting.png)
  
  also you can make api request in swagger ui
-  ![](docs\swagger-ui.png)
+  ![](docs/swagger-ui.png)
