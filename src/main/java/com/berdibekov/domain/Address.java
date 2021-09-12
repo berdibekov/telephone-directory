@@ -1,6 +1,7 @@
 package com.berdibekov.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,5 +16,6 @@ public class Address {
     private Long id;
 
     @Column(name = "address")
+    @ApiModelProperty(example = "Moscow ,Arbat ,1")
     private String address;
 }

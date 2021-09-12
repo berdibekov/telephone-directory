@@ -1,5 +1,6 @@
 package com.berdibekov.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,8 +12,11 @@ import java.time.LocalDate;
  */
 @Data
 public class ContactFilterDto {
+    @ApiModelProperty(example = "An%")
     private String firstNamePattern;
+    @ApiModelProperty(example = "%ov")
     private String lastNamePattern;
+    @ApiModelProperty(example = "%vich")
     private String patronymicPattern;
     private LocalDate birthDateBefore;
     private LocalDate birthDateAfter;
