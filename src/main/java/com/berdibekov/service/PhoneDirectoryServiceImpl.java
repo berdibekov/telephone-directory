@@ -1,6 +1,7 @@
 package com.berdibekov.service;
 
 import com.berdibekov.domain.Contact;
+import com.berdibekov.domain.validation.ContactValidator;
 import com.berdibekov.dto.ContactDto;
 import com.berdibekov.dto.ContactFilterDto;
 import com.berdibekov.exception.ResourceNotFoundException;
@@ -17,15 +18,18 @@ import java.util.Optional;
 public class PhoneDirectoryServiceImpl implements PhoneDirectoryService {
     private final ContactRepository contactRepository;
     private final ContactMapper contactMapper;
+    private final ContactValidator contactValidator;
 
-    public PhoneDirectoryServiceImpl(ContactRepository contactRepository, ContactMapper contactMapper) {
+    public PhoneDirectoryServiceImpl(ContactRepository contactRepository, ContactMapper contactMapper, ContactValidator contactValidator) {
         this.contactRepository = contactRepository;
         this.contactMapper = contactMapper;
+        this.contactValidator = contactValidator;
     }
 
     @Override
     public Contact createContact(ContactDto contactDto) {
         Contact contact = contactMapper.toEntity(contactDto);
+        contactValidator.validate(contact);
         contact = contactRepository.save(contact);
         return contact;
     }
@@ -34,6 +38,7 @@ public class PhoneDirectoryServiceImpl implements PhoneDirectoryService {
     public void updateContact(Long contactId, ContactDto contactDto) {
         Contact contact = contactMapper.toEntity(contactDto);
         contact.setId(contactId);
+        contactValidator.validate(contact);
         contactRepository.save(contact);
     }
 

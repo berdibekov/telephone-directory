@@ -18,6 +18,8 @@ UML DIAGRAM
 ![](docs/domain.png)
 - Apllication UML
     ![](docs/PhoneDirectoryService.png)
+    
+    
 API documentation by Swagger 
 -
 
@@ -25,7 +27,7 @@ Lunch application. API documentation will be on http://localhost:8080/swagger-ui
 
 Compile and run instruction
 -
-
+- JDK 14+
 - Run from Intellij IDEA.
     - In Intellij IDEA click to project folder->add framework support->Maven.
     - Lunch src\main\java\com\berdibekov\PhoneDirectory.java .
@@ -40,6 +42,23 @@ Compile and run instruction
  
  Use instructions
  -
+ 
+ - to sort contacts use json with format as post request body : {"field name":"pattern"}
+ ```$xslt
+{
+  "birthDateAfter": "2021-09-12",
+  "birthDateBefore": "2021-09-12",
+  "firstNamePattern": "An%",
+  "lastNamePattern": "%ov",
+  "patronymicPattern": "%vich"
+}
+```
+- or you can specify no parameter ,so it will get all contacts.
+ ```$xslt
+{
+}
+```
+
  Retrieve sorted page of contacts
  ![](docs/paginationAndSorting.png)
  

@@ -3,6 +3,7 @@ package com.berdibekov.api.controller;
 import com.berdibekov.domain.Contact;
 import com.berdibekov.dto.ContactDto;
 import com.berdibekov.dto.ContactFilterDto;
+import com.berdibekov.service.PhoneDirectoryService;
 import com.berdibekov.service.PhoneDirectoryServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ import java.net.URI;
 @RequestMapping("/api/")
 public class ContactController {
 
-    private final PhoneDirectoryServiceImpl phoneDirectoryServiceImpl;
+    private final PhoneDirectoryService phoneDirectoryServiceImpl;
 
     public ContactController(PhoneDirectoryServiceImpl phoneDirectoryServiceImpl) {
         this.phoneDirectoryServiceImpl = phoneDirectoryServiceImpl;
