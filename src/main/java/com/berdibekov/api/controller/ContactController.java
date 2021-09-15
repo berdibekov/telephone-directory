@@ -12,10 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -31,7 +28,7 @@ public class ContactController {
         this.phoneDirectoryServiceImpl = phoneDirectoryServiceImpl;
     }
 
-    @RequestMapping(value = "/contacts", method = RequestMethod.POST)
+    @PostMapping(value = "/contacts")
     @ApiOperation(value = "Creates a new contact")
 
     public ResponseEntity<Void> createContact(@Valid @RequestBody ContactDto contactDto) {
@@ -40,7 +37,7 @@ public class ContactController {
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/contacts/{contactId}", method = RequestMethod.PUT)
+    @PutMapping(value = "/contacts/{contactId}")
     @ApiOperation(value = "Update contact")
 
     public ResponseEntity<Void> updateContact(@PathVariable Long contactId, @Valid @RequestBody ContactDto contactDto) {
@@ -50,7 +47,7 @@ public class ContactController {
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/contacts/{contactId}", method = RequestMethod.GET)
+    @GetMapping(value = "/contacts/{contactId}")
     @ApiOperation(value = "Get contact with specified id")
 
     public ResponseEntity<Contact> getContact(@PathVariable Long contactId) {
@@ -59,7 +56,7 @@ public class ContactController {
         return new ResponseEntity<>(contact, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/contacts/searches", method = RequestMethod.POST)
+    @PostMapping(value = "/contacts/searches")
     @ApiOperation(value = "Get filtered contacts")
 
     public ResponseEntity<Page<Contact>> getFilteredContacts(@RequestBody(required = false) ContactFilterDto contactFilterDto,
